@@ -12,24 +12,28 @@ import {todoListRemaningSelecter} from '../../redux/selectors';
 
 const TodosList = () => {
   const todoList = useSelector(todoListRemaningSelecter);
+  console.log(todoList);
   return (
-    <View >
+    <View>
       <Filter />
       <AddTodo />
-
-      {todoList.map(todo => {
-        if (todo.deleted) {
-          return (
-            <Todo
-              key={todo.id}
-              id={todo.id}
-              name={todo.name}
-              completed={todo.completed}
-              deleted= {todo.deleted}
-            />
-          );
-        }
-      })}
+      <View style={styles.todoList}>
+        {todoList.map(todo => {
+          if (!todo.deleted) {
+            return (
+             
+                <Todo
+                  key={todo.id}
+                  id={todo.id}
+                  name={todo.name}
+                  completed={todo.completed}
+                  deleted={todo.deleted}
+                />
+            
+            );
+          }
+        })}
+      </View>
     </View>
   );
 };

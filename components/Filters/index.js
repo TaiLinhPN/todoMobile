@@ -1,15 +1,12 @@
 import React, {useEffect, useState} from 'react';
-// import { Radio } from '@ant-design/react-native';
-// import {Radio} from 'native-base';
 import RadioButtonRN from 'radio-buttons-react-native';
-
-
-import { Text, TextInput, View } from 'react-native'
+import {Text, TextInput, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import globalStyles from '../../theme/globalStyle';
-import { styles } from './style';
-import {useDispatch} from 'react-redux';
+import {styles} from './style';
 import filtersSlite from './filterSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import color from '../../theme/colors';
 
 const data = [
   {
@@ -26,60 +23,77 @@ const data = [
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const [searchText, setSearchText] = useState('')
-  const [statusCompleted, setStatusCompleted] = useState('All')
- 
-    const handlenputSearch = (e) => {
+  const [searchText, setSearchText] = useState('');
+  const [statusCompleted, setStatusCompleted] = useState('All');
+  const theme = useSelector(state => state.theme);
 
+  const handlenputSearch = e => {
     setSearchText(e.nativeEvent.text);
     dispatch(filtersSlite.actions.searchFilterChange(e.nativeEvent.text));
-    }
-    
-  const dandleStatusCompleted = (e) => {
-     console.log(e.label);
+  };
+
+  const dandleStatusCompleted = e => {
+    console.log(e.label);
     setStatusCompleted(e.label);
     dispatch(filtersSlite.actions.statusFilterChange(e.label));
-  }
-  
+  };
+
   clear = () => {
     setSearchText('aaaaa');
   };
-    
-        return (
-          <View>
-            <Text>Search</Text>
-            <View style={globalStyles.row}>
-              <TextInput
-                style={[styles.input, {flex: 1}]}
-                onChange={handlenputSearch}
-                value={searchText}
-              />
-              <Icon name="rocket" size={30} color="#900" />
-            </View>
-            <Text>Filter By Status</Text>
-            {/* <Radio.Group
-              value={statusCompleted}
-              onChange={dandleStatusCompleted}
-              style={{
-                flexDirection: 'row',
-                paddingVertical: 10,
-              }}>
-              <Radio value={'All'}>All</Radio>
-              <Radio value={'Completed'}>Completed</Radio>
-              <Radio value={'Todo'}>To do</Radio>
-            </Radio.Group> */}
 
-            <RadioButtonRN
-              initial={1}
-              style={{display: 'flex', flexDirection: 'row'}}
-              boxStyle={{width: '25%', margin: 4, borderWidth: 0, padding: -2}}
-              textStyle={{paddingLeft: 8}}
-              circleSize={10}
-              data={data}
-              selectedBtn={e => dandleStatusCompleted(e)}
-            />
-          </View>
-        );
-    }
+  return (
+    <View>
+      <Text
+        style={[
+          theme.stutus ? {color: color.white} : {color: color.black},
+
+          styles.header,
+        ]}>
+        Search
+      </Text>
+      <View style={[globalStyles.row, globalStyles.containerInput]}>
+        <Icon style={styles.iconSearch} name="search" size={20} color="gray" />
+        <TextInput
+          style={[styles.input, {flex: 1}]}
+          onChange={handlenputSearch}
+          value={searchText}
+        />
+      </View>
+      <Text
+        style={[
+          theme.stutus ? {color: color.white} : {color: color.black},
+
+          styles.header,
+        ]}>
+        Filter By Status
+      </Text>
+
+      <RadioButtonRN
+        initial={1}
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          marginTop: -20,
+          borderRadius: 50,
+        }}
+        boxStyle={{
+          width: '25%',
+          borderWidth: 0,
+          backgroundColor: 'none',
+          color: 'green',
+        }}
+        textStyle={[
+          {paddingLeft: 8},
+          theme.stutus ? {color: color.white} : {color: color.black},
+        ]}
+        circleSize={10}
+        deactiveColor={'#95BADF'}
+        data={data}
+        selectedBtn={e => dandleStatusCompleted(e)}
+      />
+    </View>
+  );
+};
 
 export default Filter;

@@ -1,15 +1,12 @@
 import {StyleSheet} from 'react-native';
+import color from '../../theme/colors';
 
 export const styles = StyleSheet.create({
-  input: {
-    borderWidth: 1,
-    padding: 8,
-    borderColor: '#ADAFB0',
-  },
+ 
   btnAdd: {
-    backgroundColor: '#C755D2',
-    padding: 13,
-    borderWidth: 0
+    backgroundColor: color.background,
+    padding: 14,
+    marginTop: -1,
   },
 
 });

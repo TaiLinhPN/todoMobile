@@ -11,18 +11,20 @@ const Deleted = () => {
 
   return (
     <View style={globalStyles.app}>
-      {todoList.map(todo => {
-        if (!todo.deleted) {
-          return (
-            <Todo
-              key={todo.id}
-              id={todo.id}
-              name={todo.name}
-              completed={todo.completed}
-            />
-          );
-        }
-      })}
+      <View style={styles.todoList}>
+        {todoList.map(todo => {
+          if (todo.deleted) {
+            return (
+              <Todo
+                key={todo.id}
+                id={todo.id}
+                name={todo.name}
+                completed={todo.completed}
+              />
+            );
+          }
+        })}
+      </View>
     </View>
   );
 };

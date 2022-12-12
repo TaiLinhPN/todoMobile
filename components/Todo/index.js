@@ -9,9 +9,8 @@ import {
   updateCompletedTodo,
   deleteTodo,
   updateDeletedTodo,
- 
 } from '../TodoList/todoSlice';
-import { styles } from './style';
+import {styles} from './style';
 
 const Todo = ({name, completed, deleted, id}) => {
   const dispatch = useDispatch();
@@ -33,7 +32,6 @@ const Todo = ({name, completed, deleted, id}) => {
     dispatch(deleteTodo(id));
   };
 
-  
   const handleUpdtaeDeleteTodo = id => {
     console.log(id);
     dispatch(
@@ -42,46 +40,65 @@ const Todo = ({name, completed, deleted, id}) => {
         status: !deleted,
       }),
     );
-    
   };
 
   return (
-    <View style={[globalStyles.row, globalStyles.spaceBetween]}>
-      <View style={globalStyles.row}>
-        <CheckBox value={checked} onChange={() => toggleCheckbox(id)} />
-        <Text
-          style={{
-            ...(checked
-              ? {
-                  textDecorationLine: 'line-through',
-                  textDecorationStyle: 'solid',
-                }
-              : {}),
-          }}>
-          {name}
-        </Text>
-      </View>
-
-      {deleted ? (
-        <Pressable
-          style={styles.btn}
-          onPress={() => handleUpdtaeDeleteTodo(id)}>
-          <Icon name="minus-circle" size={20} color={checked ? 'red' : {}} />
-        </Pressable>
-      ) : (
+    <>
+      <View
+        style={[
+          globalStyles.row,
+          globalStyles.spaceBetween,
+          {paddingTop: 8, paddingBottom: 8},
+        ]}>
         <View style={globalStyles.row}>
+          <CheckBox
+            value={checked}
+            tintColors={checked ? 'RGB(234 67 53)' : {}}
+            onChange={() => toggleCheckbox(id)}
+          />
+          <Text
+            style={{
+              ...(checked
+                ? {
+                    textDecorationLine: 'line-through',
+                    textDecorationStyle: 'solid',
+                  }
+                : {fontWeight: '700'}),
+            }}>
+            {name}
+          </Text>
+        </View>
+
+        {deleted ? (
           <Pressable
             style={styles.btn}
             onPress={() => handleUpdtaeDeleteTodo(id)}>
-            <Icon name="arrow-circle-o-left" size={20} color="green" />
+            <Icon
+              name="minus-circle"
+              size={20}
+              color={checked ? 'red' : 'gray'}
+            />
           </Pressable>
+        ) : (
+          <View style={globalStyles.row}>
+            <Pressable
+              style={styles.btn}
+              onPress={() => handleUpdtaeDeleteTodo(id)}>
+              <Icon name="arrow-circle-o-left" size={20} color="green" />
+            </Pressable>
 
-          <Pressable style={styles.btn} onPress={() => handleDeleteTodo(id)}>
-            <Icon name="minus-circle" size={20} color={checked ? 'red' : {}} />
-          </Pressable>
-        </View>
-      )}
-    </View>
+            <Pressable style={styles.btn} onPress={() => handleDeleteTodo(id)}>
+              <Icon
+                name="minus-circle"
+                size={20}
+                color={checked ? 'red' : 'gray'}
+              />
+            </Pressable>
+          </View>
+        )}
+      </View>
+      <View style={styles.line}></View>
+    </>
   );
 };
 

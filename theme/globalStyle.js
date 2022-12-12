@@ -5,11 +5,11 @@ import color from './colors';
 export const appWidth = Dimensions.get('window').width - 40;
 const globalStyles = StyleSheet.create({
   app: {
-    width:'100%',
+    width: '100%',
     padding: 20,
     height: '100%',
-    backgroundColor: color.white,
-    
+    // backgroundColor: color.background,
+  
   },
   row: {
     display: 'flex',
@@ -27,6 +27,24 @@ const globalStyles = StyleSheet.create({
   },
   center: {
     justifyContent: 'center',
+  },
+  containerInput: {
+    height: 43,
+    borderColor: '#ADAFB0',
+    borderRadius: 50,
+    marginBottom: 24,
+    overflow: 'hidden',
+    backgroundColor: color.white,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 5.84,
+
+    elevation: 6,
   },
 });
 

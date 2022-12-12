@@ -23,9 +23,9 @@ const AddTodo = () => {
     // setPrioriry('Medium');
   };
   return (
-    <View style={globalStyles.row}>
+    <View style={[globalStyles.row, globalStyles.containerInput,]}>
       <TextInput
-        style={[styles.input, {flex: 1}]}
+        style={[ {flex: 1, marginLeft: 20}]}
         value={todoName}
         onChangeText={newTodoName => setTodoName(newTodoName)}
       />

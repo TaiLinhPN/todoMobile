@@ -8,6 +8,7 @@ const color = {
   textList: 'rgba(9, 28, 63, 0.75)',
   detailIcon: 'rgba(65, 87, 255, 0.7)',
   primaryText: '#090F47',
+  background: '#e9e1c8',
 };
 
 export default color;

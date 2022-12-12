@@ -1,9 +1,17 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
+import color from '../../theme/colors';
 
 export const styles = StyleSheet.create({
   input: {
-    borderWidth: 1,
     padding: 8,
-    borderColor: '#ADAFB0',
   },
+  header: {
+    fontWeight: '500',
+    fontSize: 18,
+    marginBottom: 10,
+  },
+  
+  iconSearch: {
+    marginLeft: 12
+  }
 });
