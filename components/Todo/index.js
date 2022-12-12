@@ -69,24 +69,25 @@ const Todo = ({name, completed, deleted, id}) => {
           </Text>
         </View>
 
-        {deleted ? (
-          <Pressable
-            style={styles.btn}
-            onPress={() => handleUpdtaeDeleteTodo(id)}>
-            <Icon
-              name="minus-circle"
-              size={20}
-              color={checked ? 'red' : 'gray'}
-            />
-          </Pressable>
+        {deleted === false ? (
+          <View>
+            <Pressable
+              style={styles.btn}
+              onPress={() => handleUpdtaeDeleteTodo(id)}>
+              <Icon
+                name="minus-circle"
+                size={20}
+                color={checked ? 'red' : 'gray'}
+              />
+            </Pressable>
+          </View>
         ) : (
           <View style={globalStyles.row}>
             <Pressable
               style={styles.btn}
               onPress={() => handleUpdtaeDeleteTodo(id)}>
-              <Icon name="arrow-circle-o-left" size={20} color="green" />
+              <Icon name="arrow-circle-o-left" size={20} color={'green'} />
             </Pressable>
-
             <Pressable style={styles.btn} onPress={() => handleDeleteTodo(id)}>
               <Icon
                 name="minus-circle"

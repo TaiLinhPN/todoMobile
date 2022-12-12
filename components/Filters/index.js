@@ -46,7 +46,7 @@ const Filter = () => {
     <View>
       <Text
         style={[
-          theme.stutus ? {color: color.white} : {color: color.black},
+          theme.stutus ? {color: color.black} : {color: color.white},
 
           styles.header,
         ]}>
@@ -62,7 +62,7 @@ const Filter = () => {
       </View>
       <Text
         style={[
-          theme.stutus ? {color: color.white} : {color: color.black},
+          theme.stutus ? {color: color.black} : {color: color.white},
 
           styles.header,
         ]}>
@@ -85,7 +85,7 @@ const Filter = () => {
         }}
         textStyle={[
           {paddingLeft: 8},
-          theme.stutus ? {color: color.white} : {color: color.black},
+          theme.stutus ? {color: color.black} : {color: color.white},
         ]}
         circleSize={10}
         deactiveColor={'#95BADF'}
